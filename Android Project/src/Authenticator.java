@@ -9,7 +9,7 @@ import com.google.gson.Gson;
 import java.sql.*;
 public abstract class Authenticator {
    public static LoginResult ClientLogin(String email, String password){
-      password = DigestUtils.sha1Hex("ilBb1948" + password);
+      password = DigestUtils.shaHex("ilBb1948" + password);
       GsonBuilder builder = new GsonBuilder();
       Gson gson = builder.create();
       LoginResult result = gson.fromJson(CommunicationHandler.SendMessage("http://freetheheap.net:8080/ServletTesting/servlet", new LoginAttempt(email, password)), LoginResult.class);
