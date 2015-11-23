@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="ProjectHubServlet:war exploded">
+    <output-path>$USER_HOME$/Downloads/apache-tomcat-7.0.52-windows-x64/apache-tomcat-7.0.52/webapps/ProjectHubServlet</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="ProjectHubServlet/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="ProjectHubServlet" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

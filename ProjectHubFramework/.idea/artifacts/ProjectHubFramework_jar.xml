@@ -1,0 +1,12 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="ProjectHubFramework:jar">
+    <output-path>$USER_HOME$/Downloads/apache-tomcat-7.0.52-windows-x64/apache-tomcat-7.0.52/lib</output-path>
+    <root id="archive" name="ProjectHubFramework.jar">
+      <element id="module-output" name="ProjectHubFramework" />
+      <element id="library" level="project" name="commons-codec-1.10" />
+      <element id="library" level="project" name="gson-2.4" />
+      <element id="library" level="project" name="mysql-connector-java-5.1.37-bin" />
+      <element id="library" level="project" name="commons-io-2.4" />
+    </root>
+  </artifact>
+</component>
