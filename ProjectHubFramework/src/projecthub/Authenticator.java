@@ -1,6 +1,10 @@
 package projecthub;
 /**
  * Created by Chris on 11/15/2015.
+ * 
+ * This class contains several methods to authenticate
+ * with the Tomcat servlet as well as generate unique 
+ * session ID strings and query login results via SQL:
  */
 import com.google.gson.GsonBuilder;
 import com.google.gson.Gson;
@@ -10,7 +14,10 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.Gson;
 
 import java.sql.*;
+
 public abstract class Authenticator {
+	
+   // Method to authenticate with servlet, user ID/password/server specified:
    public static LoginResult ClientLogin(String email, String password, String server){
       password = new String(Hex.encodeHex(DigestUtils.sha1("ilBb1948" + password)));
       GsonBuilder builder = new GsonBuilder();
@@ -20,6 +27,8 @@ public abstract class Authenticator {
          result = new LoginResult(false, "");
       return result;
    }
+   
+   // Method to authenticate with servlet, user ID/password specified:
    public static LoginResult ClientLogin(String email, String password){
       password = new String(Hex.encodeHex(DigestUtils.sha1("ilBb1948" + password)));
       GsonBuilder builder = new GsonBuilder();
@@ -29,6 +38,9 @@ public abstract class Authenticator {
          result = new LoginResult(false, "");
       return result;
    }
+   
+   // Method to get SQL record of login result using user ID/password and 
+   // Database name:
    public static LoginResult VerifyLogin(String email, String password, Database db){
       ResultSet results = null;
       results = db.doQuery("SELECT * FROM users WHERE E_Mail='" + email + "' AND Password='" + password + "'");
@@ -38,6 +50,7 @@ public abstract class Authenticator {
       }catch(Exception e){ return new LoginResult(false, ""); }
       return new LoginResult(true, GenerateSessionID());
    }
+   // Generates a unique ID for each session:
    public static String GenerateSessionID(){
       StringBuilder builder = new StringBuilder();
       for(char c = 'a'; c <= 'z'; c++)

@@ -1,5 +1,7 @@
 package projecthub; /**
  * Created by Chris on 11/15/2015.
+ *
+ * This class handles passing objects via HTTP communication:
  */
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
@@ -8,6 +10,8 @@ import java.net.URL;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.apache.commons.io.IOUtils;
+
+
 public class CommunicationHandler {
    public static String SendMessage(String httpUrl, Object object){
       String response = null;
