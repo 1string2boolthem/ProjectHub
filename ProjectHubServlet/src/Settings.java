@@ -3,10 +3,10 @@
  */
 public class Settings {
    private static Settings ourInstance = new Settings();
-   private static String DBUsername = "";
-   private static String DBPassword = "";
-   private static String DBHost = "";
-   private static String DBName = "";
+   private static String DBUsername = "crendall";
+   private static String DBPassword = "whereami";
+   private static String DBHost = "tigerlily.arvixe.com";
+   private static String DBName = "peacebuildingdevelopment";
    public static Settings getInstance() {
       return ourInstance;
    }

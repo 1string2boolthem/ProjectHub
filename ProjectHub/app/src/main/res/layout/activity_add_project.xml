@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:label="Add Project"
+    tools:context="csit.team3.projecthub.AddProject">
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:fillViewport="false">
+
+    </ScrollView>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="1"
+        android:layout_alignTop="@+id/scrollView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtProjectName"
+            android:layout_alignTop="@+id/scrollView"
+            android:layout_alignLeft="@+id/scrollView"
+            android:layout_alignStart="@+id/scrollView"
+            android:layout_alignRight="@+id/scrollView"
+            android:layout_alignEnd="@+id/scrollView"
+            android:hint="Project Name"
+            android:textAlignment="center"
+            android:singleLine="true"
+            android:editable="true" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtDescription"
+            android:hint="Project Description"
+            android:textAlignment="center"
+            android:singleLine="true"
+            android:editable="true"
+            android:layout_below="@+id/txtProjectName"
+            android:layout_alignLeft="@+id/scrollView"
+            android:layout_alignStart="@+id/scrollView"
+            android:layout_alignRight="@+id/scrollView"
+            android:layout_alignEnd="@+id/scrollView" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Project Owner"
+            android:id="@+id/txtOwner"
+            android:textAlignment="center" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Choose Owner"
+            android:id="@+id/btnChooseOwner"
+            android:layout_centerVertical="true"
+            android:layout_alignLeft="@+id/scrollView"
+            android:layout_alignStart="@+id/scrollView"
+            android:layout_alignRight="@+id/scrollView"
+            android:layout_alignEnd="@+id/scrollView" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Project Participants"
+            android:id="@+id/textView9"
+            android:layout_below="@+id/txtOwner"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:id="@+id/lstParticipants"
+            android:layout_below="@+id/textView9"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_above="@+id/btnAddParticipant"
+            android:choiceMode="singleChoice"
+            android:smoothScrollbar="false" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add Participant"
+            android:id="@+id/btnAddParticipant"
+            android:layout_centerVertical="true"
+            android:layout_alignLeft="@+id/scrollView"
+            android:layout_alignStart="@+id/scrollView"
+            android:layout_alignRight="@+id/scrollView"
+            android:layout_alignEnd="@+id/scrollView" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Project Resources"
+            android:id="@+id/textView10"
+            android:layout_below="@+id/btnAddParticipant"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:id="@+id/lstResources"
+            android:choiceMode="singleChoice"
+            android:layout_alignLeft="@+id/scrollView"
+            android:layout_alignStart="@+id/scrollView"
+            android:layout_below="@+id/textView10"
+            android:layout_above="@+id/btnAddResource" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add Resource"
+            android:id="@+id/btnAddResource"
+            android:layout_marginBottom="0dp"
+            android:layout_alignBottom="@+id/scrollView"
+            android:layout_alignLeft="@+id/scrollView"
+            android:layout_alignStart="@+id/scrollView"
+            android:layout_alignRight="@+id/scrollView"
+            android:layout_alignEnd="@+id/scrollView" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Create Project"
+            android:id="@+id/btnCreateProject"
+            android:layout_alignBottom="@+id/scrollView"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignRight="@+id/scrollView"
+            android:layout_alignEnd="@+id/scrollView" />
+
+    </LinearLayout>
+
+</RelativeLayout>

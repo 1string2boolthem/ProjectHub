@@ -18,4 +18,14 @@ public class GsonWrapper {
       Gson gson = builder.create();
       gson.toJson(source, out);
    }
+   public static String toJson(Object source){
+      GsonBuilder builder = new GsonBuilder();
+      Gson gson = builder.create();
+      return gson.toJson(source);
+   }
+   public static Object fromJson(String json, Class theClass){
+      GsonBuilder builder = new GsonBuilder();
+      Gson gson = builder.create();
+      return gson.fromJson(json, theClass);
+   }
 }

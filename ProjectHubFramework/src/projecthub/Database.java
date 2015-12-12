@@ -8,6 +8,8 @@ public class Database {
    private Connection c;
    private String error;
    public Database(String username, String password, String server){
+      int test = 0;
+      System.out.println(test);
       //Try loading the MySQL driver.
       try {
          // The newInstance() call is a work around for some
@@ -43,6 +45,9 @@ public class Database {
          return null;
       }
    }
+   public String testFunction(){
+      return "Something cool.";
+   }
    public boolean setDatabase(String database){
       if(database == "" || username == "" || password == "")
          return false;
@@ -61,7 +66,21 @@ public class Database {
          s.execute(query);
       }catch(Exception e){}
    }
-   public ResultSet doQuery(String query){
+   public int insert(String query){
+      try{
+         Statement s = c.createStatement();
+         s.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
+         ResultSet rs = s.getGeneratedKeys();
+         if(rs.next())
+            return rs.getInt(1);
+         else
+            return -1;
+      }catch(Exception e){
+         error = e.getLocalizedMessage();
+      }
+      return -1;
+   }
+   public ResultSet getResults(String query){
       ResultSet results;
       if(this.database == "")
          return null;
@@ -71,7 +90,7 @@ public class Database {
             return null;
          Statement s = c.createStatement();
          results = s.executeQuery(query);
-      }catch(Exception e){results = null;}
+      }catch(Exception e){results = null; error = e.getLocalizedMessage();}
       return results;
    }
    public void closeConnection(){

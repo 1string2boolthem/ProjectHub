@@ -5,15 +5,15 @@ package projecthub;
  */
 public class LoginResult {
    private boolean Success;
-   private String SessionID;
-   public LoginResult(boolean success, String sessionID){
+   private String AuthString;
+   public LoginResult(boolean success, String authString){
       this.Success = success;
-      this.SessionID = sessionID;
+      this.AuthString = authString;
    }
    public boolean wasSuccessful(){
       return this.Success;
    }
-   public String getSessionID(){
-      return this.SessionID;
+   public String getAuthString(){
+      return this.AuthString;
    }
 }

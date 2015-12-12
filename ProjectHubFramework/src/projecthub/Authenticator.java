@@ -11,34 +11,29 @@ import com.google.gson.Gson;
 
 import java.sql.*;
 public abstract class Authenticator {
-   public static LoginResult ClientLogin(String email, String password, String server){
+   public static LoginResult ClientLogin(String email, String password, String androidID, String server, String servletRoot){
       password = new String(Hex.encodeHex(DigestUtils.sha1("ilBb1948" + password)));
       GsonBuilder builder = new GsonBuilder();
       Gson gson = builder.create();
-      LoginResult result = gson.fromJson(CommunicationHandler.SendMessage("http://" + server + "/ProjectHubServlet/login", new LoginAttempt(email, password)), LoginResult.class);
+      LoginResult result = gson.fromJson(CommunicationHandler.SendMessage("http://" + server + "/" + servletRoot + "/login", new LoginAttempt(email, password, androidID)), LoginResult.class);
       if(result == null)
          result = new LoginResult(false, "");
       return result;
    }
-   public static LoginResult ClientLogin(String email, String password){
-      password = new String(Hex.encodeHex(DigestUtils.sha1("ilBb1948" + password)));
-      GsonBuilder builder = new GsonBuilder();
-      Gson gson = builder.create();
-      LoginResult result = gson.fromJson(CommunicationHandler.SendMessage("http://10.0.0.3:8080/ProjectHubServlet/login", new LoginAttempt(email, password)), LoginResult.class);
-      if(result == null)
-         result = new LoginResult(false, "");
+   public static LoginResult ClientLogin(String email, String password, String androidID){
+      LoginResult result = Authenticator.ClientLogin(email, password, androidID, "freetheheap.net:8080", "ProjectHubServlet");
       return result;
    }
    public static LoginResult VerifyLogin(String email, String password, Database db){
       ResultSet results = null;
-      results = db.doQuery("SELECT * FROM users WHERE E_Mail='" + email + "' AND Password='" + password + "'");
+      results = db.getResults("SELECT * FROM users WHERE E_Mail='" + email + "' AND Password='" + password + "'");
       try{
          if(results.next() == false)
             return new LoginResult(false, "");
       }catch(Exception e){ return new LoginResult(false, ""); }
-      return new LoginResult(true, GenerateSessionID());
+      return new LoginResult(true, GenerateAuthString());
    }
-   public static String GenerateSessionID(){
+   public static String GenerateAuthString(){
       StringBuilder builder = new StringBuilder();
       for(char c = 'a'; c <= 'z'; c++)
          builder.append(c);

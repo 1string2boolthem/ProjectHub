@@ -11,4 +11,44 @@
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>RegisterServlet</servlet-name>
+        <servlet-class>RegisterServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RegisterServlet</servlet-name>
+        <url-pattern>/register</url-pattern>
+    </servlet-mapping>
+    <servlet>
+    <servlet-name>GetUserProjectsServlet</servlet-name>
+    <servlet-class>GetUserProjectsServlet</servlet-class>
+</servlet>
+    <servlet-mapping>
+        <servlet-name>GetUserProjectsServlet</servlet-name>
+        <url-pattern>/getUserProjects</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>GetIndividualsServlet</servlet-name>
+        <servlet-class>GetIndividualsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetIndividualsServlet</servlet-name>
+        <url-pattern>/getIndividuals</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>GetResources</servlet-name>
+        <servlet-class>GetResources</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetResources</servlet-name>
+        <url-pattern>/getResources</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>CreateProjectServlet</servlet-name>
+        <servlet-class>CreateProjectServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CreateProjectServlet</servlet-name>
+        <url-pattern>/createProject</url-pattern>
+    </servlet-mapping>
 </web-app>
