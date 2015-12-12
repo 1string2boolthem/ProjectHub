@@ -1,5 +1,8 @@
 /**
  * Created by Chris on 11/23/2015.
+ *
+ * This class represents the ProjectHub database
+ * settings encapsulated into a class object:
  */
 public class Settings {
    private static Settings ourInstance = new Settings();

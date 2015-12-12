@@ -1,5 +1,8 @@
 package projecthub; /**
  * Created by Chris on 11/15/2015.
+ *
+ * This class allows for simple conversion of classes
+ * to and from GSON to JSON.
  */
 import com.google.gson.GsonBuilder;
 import com.google.gson.Gson;

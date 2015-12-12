@@ -1,3 +1,10 @@
+/*
+* LoginHomeActivity.java annotated by NF on 12/11/2015
+*
+* This represents the home/logon screen of the projectHub 
+* Android app. 
+*/
+
 package csit.team3.projecthub;
 
 import projecthub.*;
@@ -11,7 +18,17 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+<<<<<<< HEAD
 import java.io.Reader;
+=======
+// Note: the user's e-mail address is used as the user's ID
+// In this app. 
+
+public class LoginHomeActivity extends AppCompatActivity {
+    
+	// (See the notes below about the Controller class)
+	private Controller controller;
+>>>>>>> origin/master
 
 public class LoginHomeActivity extends AppCompatActivity implements OnHTTPTaskCompleted {
     private Controller controller;
@@ -39,6 +56,7 @@ public class LoginHomeActivity extends AppCompatActivity implements OnHTTPTaskCo
         TextView lblStatus = (TextView)findViewById(R.id.lblStatus);
         lblStatus.setText(status);
     }
+<<<<<<< HEAD
     public void showProgressDialog(String text){
         this.progressDialog = ProgressDialog.show(this, "", text, true);
     }
@@ -51,6 +69,24 @@ public class LoginHomeActivity extends AppCompatActivity implements OnHTTPTaskCo
         LoginResult loginResult = (LoginResult)GsonWrapper.fromJson(result.getResponse(), LoginResult.class);
 
         if(loginResult == null)
+=======
+}
+
+// The controller is the class object which passes data
+// between the view and the database:
+class Controller implements View.OnClickListener {
+    AppCompatActivity screen;
+    public Controller(AppCompatActivity screen){
+        this.screen = screen;
+    }
+    public void onClick(View view){
+        EditText txtEmail = (EditText)screen.findViewById(R.id.txtEmail);
+        EditText txtPassword = (EditText)screen.findViewById(R.id.txtPassword);
+        
+		// The userID/password authentication is here:
+		LoginResult result = Authenticator.ClientLogin(txtEmail.getText().toString(), txtPassword.getText().toString());
+        if(result == null)
+>>>>>>> origin/master
             return;
         if(loginResult.wasSuccessful()){
             TextView lblStatus = (TextView)findViewById(R.id.lblStatus);

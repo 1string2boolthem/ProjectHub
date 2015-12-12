@@ -1,3 +1,12 @@
+/**
+ * Created by Chris on 11/15/2015.
+ * 
+ * This class represents the servlet used as
+ * the gateway to the project database. 
+ *
+ * The version of Apache Tomcat used is 7.0.52.
+ */
+
 import java.io.IOException;
 
 import org.apache.commons.codec.binary.Hex;
@@ -11,11 +20,13 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
 
-/**
- * Created by Chris on 11/15/2015.
- */
+
 public class LoginServlet extends javax.servlet.http.HttpServlet {
    @Override
+   
+   // Note: This is where the DB credentials are set in ProjectHub,
+   // using a Settings class object as "storage:"
+   
    public void init(ServletConfig config) throws ServletException {
       Settings settings = Settings.getInstance();
       settings.setDBUsername("crendall");
