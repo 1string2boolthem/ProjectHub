@@ -1,11 +1,12 @@
-package projecthub;
-
 /**
  * Created by Chris on 11/15/2015.
  * 
  * This object represents the result of an attempted login
  * and assists in providing a record stored for auditing purposes.
  */
+ 
+package projecthub;
+
 public class LoginResult {
    private boolean Success;
    private String AuthString;

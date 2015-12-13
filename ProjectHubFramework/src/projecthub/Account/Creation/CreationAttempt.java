@@ -1,8 +1,12 @@
-package projecthub.Account.Creation;
-
 /**
  * Created by Chris on 11/24/2015.
+ *
+ * This class is an abstraction of an instance of an 
+ * attempt to create a user account. 
  */
+
+package projecthub.Account.Creation;
+
 public class CreationAttempt {
    private String firstName, lastName, username, email, password, confirmPassword;
 

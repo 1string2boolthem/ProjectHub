@@ -1,10 +1,14 @@
-package projecthub; /**
+/**
  * Created by Chris on 11/15/2015.
  *
  * This class is a logical abstraction of a SQL database instance.
  * It contains functions for identification, connection, and querying:
  */
+
+package projecthub; 
+
 import java.sql.*;
+
 public class Database {
    private String username, password, database = "", server, salt = "";
    private boolean driverLoaded;

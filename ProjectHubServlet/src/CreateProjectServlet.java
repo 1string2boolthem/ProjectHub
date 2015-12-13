@@ -1,3 +1,11 @@
+ /**
+ * Created by Chris on 12/11/2015.
+ * This class represents the servlet used to 
+ * Create projects and store them in the database.  
+ *
+ * The version of Apache Tomcat used is 7.0.52.
+ */
+
 import projecthub.*;
 import projecthub.Project.ProjectCreationAttempt;
 import projecthub.Project.ProjectCreationResult;
@@ -12,11 +20,12 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
 
-/**
- * Created by Chris on 12/11/2015.
- */
+
 @WebServlet(name = "CreateProjectServlet")
 public class CreateProjectServlet extends HttpServlet {
+   
+   // This verifies that all project data is valid and that the information is unique,
+   // To prevent adding duplicates:
    private String verifyProjectData(ProjectCreationAttempt attempt, Database db){
       String name = attempt.getName();
       String description = attempt.getDescription();
@@ -34,6 +43,8 @@ public class CreateProjectServlet extends HttpServlet {
          return "A project with the same name already exists.";
       return null;
    }
+   
+   // This prevents adding duplicates:
    private boolean projectExists(String projectName, Database db){
       ResultSet projects = db.getResults("SELECT * FROM projects WHERE Name='" + projectName + "'");
       try{
@@ -45,6 +56,8 @@ public class CreateProjectServlet extends HttpServlet {
          return true;
       }
    }
+   
+   // Returns userID as represented in DB, from e-mail address:
    private int getUserIDFromEmail(String email, Database db){
       ResultSet users = db.getResults("SELECT * FROM users WHERE E_Mail='" + email + "'");
       try{
@@ -53,6 +66,8 @@ public class CreateProjectServlet extends HttpServlet {
       } catch(Exception e){}
       return -1;
    }
+   
+   // Returns user ID as represented in DB:
    private int getUserID(String username, Database db){
       ResultSet users = db.getResults("SELECT * FROM users WHERE Username='" + username + "'");
       try{

@@ -1,3 +1,10 @@
+/**
+ * Annotated by NF on 12/12/2015.
+ *
+ * This view represents the project creation/resource selection 
+ * screen in the Android portion of the project. 
+ */
+
 package csit.team3.projecthub;
 
 import android.app.ProgressDialog;
@@ -19,7 +26,9 @@ import projecthub.IndividualsList;
 import projecthub.ResourceList;
 
 public class AddProjectChooseResource extends AppCompatActivity implements OnHTTPTaskCompleted {
-    ArrayList<String> resources = new ArrayList<String>();
+    
+	// Set up data structures and other variables:
+	ArrayList<String> resources = new ArrayList<String>();
     ArrayList<String> keys = new ArrayList<String>();
     private static final String HOST = "freetheheap.net";
     ArrayAdapter<String> listAdapter;
@@ -34,7 +43,8 @@ public class AddProjectChooseResource extends AppCompatActivity implements OnHTT
         task.execute(request);
     }
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    // View creation code:
+	protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_project_choose_resource);
         this.controller = new Controller(this);
@@ -45,7 +55,9 @@ public class AddProjectChooseResource extends AppCompatActivity implements OnHTT
         this.progressDialog = ProgressDialog.show(this, "", "Loading resources...", true);
         loadResources();
     }
-    private void returnResource(int keyPosition){
+    
+	// Gets resource based on list index:
+	private void returnResource(int keyPosition){
         Intent returnData = new Intent();
         returnData.putExtra("caller", "resource");
         returnData.putExtra("id", keys.get(keyPosition));
@@ -63,7 +75,10 @@ public class AddProjectChooseResource extends AppCompatActivity implements OnHTT
         this.listAdapter.notifyDataSetChanged();
         this.progressDialog.hide();
     }
-    class Controller implements View.OnClickListener, ListView.OnItemClickListener {
+    
+	// Controller is an intermediate class which processes and passes data to/from
+	// The App(UI) and the DB:
+	class Controller implements View.OnClickListener, ListView.OnItemClickListener {
         AddProjectChooseResource screen;
 
         public Controller(AddProjectChooseResource screen) {

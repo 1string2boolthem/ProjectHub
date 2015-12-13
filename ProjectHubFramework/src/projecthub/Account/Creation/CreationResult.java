@@ -1,10 +1,15 @@
+/**
+ * Created by Chris on 12/10/2015.
+ *
+ * This class is an abstraction of a single result of
+ * a user creating a persistent account.
+ */
+
 package projecthub.Account.Creation;
 
 import java.util.ArrayList;
 
-/**
- * Created by Chris on 11/24/2015.
- */
+
 public class CreationResult {
    private boolean success;
    private String email;

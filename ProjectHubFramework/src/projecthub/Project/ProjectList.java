@@ -1,10 +1,15 @@
+/**
+ * Created by Chris on 12/10/2015.
+ *
+ * This class represents a data structure used to 
+ * hold projectID/project name:
+ */
+
 package projecthub.Project;
 
 import java.util.*;
 
-/**
- * Created by Chris on 12/10/2015.
- */
+
 public class ProjectList {
    private Map<String, String> projects = new HashMap<String, String>();
    public void add(String projectID, String projectName){

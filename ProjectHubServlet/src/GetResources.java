@@ -1,3 +1,11 @@
+ /**
+ * Created by Chris on 12/11/2015.
+ * This class represents the servlet used to 
+ * retrieve project resources from the project database. 
+ *
+ * The version of Apache Tomcat used is 7.0.52.
+ */
+
 import projecthub.*;
 
 import javax.servlet.ServletException;
@@ -10,19 +18,22 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
 
-/**
- * Created by Chris on 12/11/2015.
- */
+
 @WebServlet(name = "GetResources")
 public class GetResources extends HttpServlet {
    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-      Database db = new Database("crendall", "whereami", "tigerlily.arvixe.com");
+      
+	  // Login code section:
+	  Database db = new Database("crendall", "whereami", "tigerlily.arvixe.com");
       db.setDatabase("peacebuildingdevelopment");
       InputStreamReader in = new InputStreamReader(request.getInputStream());
       HTTPRequest httpRequest = (HTTPRequest) GsonWrapper.fromJson(in, HTTPRequest.class);
       Credentials credentials = httpRequest.getCredentials();
       LoginResult result = Authenticator.VerifyLogin(credentials.getEmail(), credentials.getPasswordSalted("ilBb1948"), db);
-      ResultSet resources;
+      
+	  // Project resources will be returned as a resultset, but only public
+	  // resources will be returned if the authentication attempt fails:
+	  ResultSet resources;
       if(!result.wasSuccessful())
          resources = db.getResults("SELECT ID, Name FROM resources WHERE Public=1");
       else

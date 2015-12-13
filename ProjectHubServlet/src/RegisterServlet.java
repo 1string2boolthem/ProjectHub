@@ -1,3 +1,11 @@
+ /**
+ * Created by Chris on 12/9/2015.
+ * This class represents the servlet used to 
+ * register new users into the project database. 
+ *
+ * The version of Apache Tomcat used is 7.0.52.
+ */
+
 import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.codec.digest.DigestUtils;
 import projecthub.Account.Creation.CreationAttempt;
@@ -16,11 +24,11 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
 
-/**
- * Created by Chris on 12/9/2015.
- */
+
 @WebServlet(name = "RegisterServlet")
 public class RegisterServlet extends HttpServlet {
+   
+   // This helper method verifies that there are no similar (duplicate) values in the DB:
    private boolean verifyUniqueValue(Database db, String key, String value){
       ResultSet results = db.getResults("SELECT * FROM users WHERE " + key + "='" + value + "'");
       System.out.println(db.getError());
@@ -35,6 +43,9 @@ public class RegisterServlet extends HttpServlet {
       }
       return false;
    }
+   
+   // This returns an error message if for some reason the information and credentials
+   // supplied are valid. Otherwise, it returns null:
    private String verifyAttempt(CreationAttempt attempt, Database db){
       if(attempt.getFirstName() == null || attempt.getLastName() == null || attempt.getEmail() == null || attempt.getUsername() == null || attempt.getPassword() == null || attempt.getConfirmPassword() == null)
          return "Please complete all fields.";
@@ -48,6 +59,9 @@ public class RegisterServlet extends HttpServlet {
          return "Password and Confirm Password do not match.";
       return null;
    }
+   
+   // This verifies the user registry, then adds the new user into the DB 
+   // if the verification is successful:
    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
       Settings settings = Settings.getInstance();
       String dbUsername = Settings.getDBUsername();
@@ -60,11 +74,15 @@ public class RegisterServlet extends HttpServlet {
       CreationAttempt attempt = (CreationAttempt)GsonWrapper.fromJson(httpRequest.getData(), CreationAttempt.class);
       String error = verifyAttempt(attempt, db);
       CreationResult result;
-      if(error != null){
+      
+	  // If error != null, there's a problem:
+	  if(error != null){
          result = new CreationResult(false, "", "");
          result.addError(error);
       }
-      else{
+      
+	  // Otherwise, add the new user to the DB:
+	  else{
          int row = db.insert("INSERT INTO users (Username, Password, E_Mail, Individual_ID, Level, First_Name, Last_Name) VALUES ('" + attempt.getUsername() +
                "', '" +  new String(Hex.encodeHex(DigestUtils.sha1("ilBb1948" + attempt.getPassword()))) + "', '" + attempt.getEmail() + "', 0, 0, '" + attempt.getFirstName() +
                "', '" + attempt.getLastName() + "')");

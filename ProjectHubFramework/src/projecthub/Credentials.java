@@ -1,11 +1,16 @@
+/**
+ * Created by Chris on 12/10/2015.
+ *
+ * This class is an encapsulation of user credentials - 
+ * email/password
+ */
+
 package projecthub;
 
 import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.codec.digest.DigestUtils;
 
-/**
- * Created by Chris on 12/10/2015.
- */
+
 public class Credentials{
    private String email;
    private String password;

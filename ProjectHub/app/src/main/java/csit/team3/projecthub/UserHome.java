@@ -1,3 +1,10 @@
+/*
+ * Annotated by NF on 12/12/2014
+ *
+ * This Android View represents the user home screen
+ * shown once the user logs in:
+ */
+
 package csit.team3.projecthub;
 
 import android.app.ActionBar;
@@ -32,7 +39,9 @@ public class UserHome extends AppCompatActivity implements OnHTTPTaskCompleted {
     Controller controller;
     ProgressDialog progressDialog;
     ArrayAdapter<String> listAdapter;
-    private void loadProjectNames(){
+    
+	// Loads projects in which user is involved, from DB:
+	private void loadProjectNames(){
         if(loadInProcess)
             return;
         loadInProcess = true;
@@ -50,6 +59,8 @@ public class UserHome extends AppCompatActivity implements OnHTTPTaskCompleted {
         loadProjectNames();
     }
     @Override
+	
+	// Displays projects in View:
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_home);
@@ -61,6 +72,8 @@ public class UserHome extends AppCompatActivity implements OnHTTPTaskCompleted {
         btnNavigate.setOnClickListener(this.controller);
         loadProjectNames();
     }
+	
+	// Helper method to load projects:
     public void onHTTPTaskCompleted(HTTPResult result){
         ProjectList projectList = (ProjectList) GsonWrapper.fromJson(result.getResponse(),ProjectList.class);
         this.listAdapter.clear();
@@ -72,7 +85,10 @@ public class UserHome extends AppCompatActivity implements OnHTTPTaskCompleted {
         this.progressDialog.hide();
         loadInProcess = false;
     }
-    class Controller implements View.OnClickListener {
+    
+	// Controller is an intermediate Data structure used to pass data to and from
+    // The View and DB:
+	class Controller implements View.OnClickListener {
         UserHome screen;
         public Controller(UserHome screen){
             this.screen = screen;

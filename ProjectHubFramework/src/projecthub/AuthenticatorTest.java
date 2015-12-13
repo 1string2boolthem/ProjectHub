@@ -1,15 +1,17 @@
-package projecthub;
-
-import org.junit.Test;
-
-import static org.junit.Assert.*;
-
 /**
  * Created by Chris on 11/16/2015.
  *
  * This is a Junit unit testing routines for testing 
  * The authentication function of the project:
  */
+
+package projecthub;
+
+import org.junit.Test;
+
+import static org.junit.Assert.*;
+
+
 public class AuthenticatorTest {
 
    @Test

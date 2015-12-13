@@ -1,4 +1,12 @@
+/**
+ * Created by Chris on 12/9/2015.
+ *
+ * These are two helper classes which represent
+ * HTTP communication tasks between the App(UI) and DB: 
+ */
+
 package csit.team3.projecthub;
+
 import org.apache.commons.io.IOUtils;
 import android.os.AsyncTask;
 
@@ -11,9 +19,7 @@ import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-/**
- * Created by Chris on 12/9/2015.
- */
+
 public class HTTPTask extends AsyncTask<HTTPRequest, Void, HTTPResult> {
     private OnHTTPTaskCompleted onCompleted = null;
     public HTTPTask(OnHTTPTaskCompleted onCompleted){
@@ -53,6 +59,8 @@ public class HTTPTask extends AsyncTask<HTTPRequest, Void, HTTPResult> {
         return response;
     }
 }
+
+// Encapsulates results of HTTP Requests:
 class HTTPResult{
     private String requestIdentifier;
     private String response;

@@ -1,3 +1,11 @@
+ /**
+ * Created by Chris on 12/11/2015.
+ * This class represents the servlet used to 
+ * retrieve User projects from the project database. 
+ *
+ * The version of Apache Tomcat used is 7.0.52.
+ */
+
 import projecthub.*;
 import projecthub.Project.ProjectList;
 
@@ -11,13 +19,12 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
 
-/**
- * Created by Chris on 12/10/2015.
- */
+
 @WebServlet(name = "GetUserProjectsServlet")
 public class GetUserProjectsServlet extends HttpServlet {
    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-      Database db = new Database("crendall", "whereami", "tigerlily.arvixe.com");
+      // Server Login section of code:
+	  Database db = new Database("crendall", "whereami", "tigerlily.arvixe.com");
       db.setDatabase("peacebuildingdevelopment");
       InputStreamReader in = new InputStreamReader(request.getInputStream());
       HTTPRequest httpRequest = (HTTPRequest) GsonWrapper.fromJson(in, HTTPRequest.class);
@@ -26,6 +33,8 @@ public class GetUserProjectsServlet extends HttpServlet {
       if(!result.wasSuccessful())
          return;
       String email = credentials.getEmail();
+	  
+	  // User project records are retrieved from the database as a resultset:
       ResultSet projects = db.getResults("SELECT p.Project_ID, Name FROM projects p JOIN `users->projects` up ON p.Project_ID=up.Project_ID JOIN users u ON up.User_ID=u.ID WHERE E_Mail='" + credentials.getEmail() + "'");
       ProjectList projectList = new ProjectList();
       try{

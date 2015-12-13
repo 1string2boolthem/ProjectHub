@@ -1,8 +1,11 @@
-package projecthub; /**
+/**
  * Created by Chris on 11/15/2015.
  *
  * This class handles passing objects via HTTP communication:
  */
+
+package projecthub; 
+
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.HttpURLConnection;

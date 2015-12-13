@@ -1,3 +1,10 @@
+/*
+ * Annotated by NF on 12/12/2015
+ *
+ * This View represents the screen in which a new user 
+ * can create a persistent user account.
+ */
+
 package csit.team3.projecthub;
 
 import android.content.Intent;
@@ -22,7 +29,10 @@ public class CreateAccount extends AppCompatActivity implements OnHTTPTaskComple
         Button btnRegister = (Button)findViewById(R.id.btnRegister);
         btnRegister.setOnClickListener(this.controller);
     }
-    public void onHTTPTaskCompleted(HTTPResult result){
+    
+	// Attempt to create the account, show error message if account
+	// creation is unsucessful:
+	public void onHTTPTaskCompleted(HTTPResult result){
         CreationResult creationResult = (CreationResult) GsonWrapper.fromJson(result.getResponse(), CreationResult.class);
         if(!creationResult.wasSuccessful())
             NotificationDialog.show("Register Failed", creationResult.getError(0), this);
@@ -33,11 +43,16 @@ public class CreateAccount extends AppCompatActivity implements OnHTTPTaskComple
             startActivity(intent);
         }
     }
+	
+	// Controller is an intermediate class responsible for processing and 
+	// passing data to and from the App(UI) and DB: 
     class Controller implements View.OnClickListener {
         CreateAccount screen;
         public Controller(CreateAccount screen){
             this.screen = screen;
         }
+		
+		// Process user input for account creation purposes:
         public void doRegister(){
             String firstName = ((EditText)findViewById(R.id.txtFirst)).getText().toString();
             String lastName = ((EditText)findViewById(R.id.txtLast)).getText().toString();

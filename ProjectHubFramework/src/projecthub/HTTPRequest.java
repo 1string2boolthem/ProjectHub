@@ -1,3 +1,10 @@
+/**
+ * Created by Chris on 12/10/2015.
+ *
+ * This clas is an encapsulation of an HTTP requestIdentifier
+ * used for communication with the servlet. 
+ */
+
 package projecthub;
 
 import org.apache.commons.codec.binary.Hex;
@@ -5,9 +12,7 @@ import org.apache.commons.codec.digest.DigestUtils;
 
 import java.io.OutputStream;
 
-/**
- * Created by Chris on 12/10/2015.
- */
+
 public class HTTPRequest{
    private String requestIdentifier;
    private String credentials;

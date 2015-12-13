@@ -1,3 +1,11 @@
+ /**
+ * Created by Chris on 12/11/2015.
+ * This class represents the servlet used to 
+ * retrieve Users ("individuals") from the project database. 
+ *
+ * The version of Apache Tomcat used is 7.0.52.
+ */
+
 import projecthub.*;
 
 import javax.servlet.ServletException;
@@ -10,21 +18,26 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
 
-/**
- * Created by Chris on 12/11/2015.
- */
+
+ 
 @WebServlet(name = "GetIndividualsServlet")
 public class GetIndividualsServlet extends HttpServlet {
    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-      Database db = new Database("crendall", "whereami", "tigerlily.arvixe.com");
+      
+	  // DB Authentication code section: 
+	  Database db = new Database("crendall", "whereami", "tigerlily.arvixe.com");
       db.setDatabase("peacebuildingdevelopment");
       InputStreamReader in = new InputStreamReader(request.getInputStream());
       HTTPRequest httpRequest = (HTTPRequest) GsonWrapper.fromJson(in, HTTPRequest.class);
       Credentials credentials = httpRequest.getCredentials();
       LoginResult result = Authenticator.VerifyLogin(credentials.getEmail(), credentials.getPasswordSalted("ilBb1948"), db);
-      if(!result.wasSuccessful())
+      
+	  // If authentication was unsucessful, then no users are listed (returned):
+	  if(!result.wasSuccessful())
          return;
-      ResultSet individuals = db.getResults("SELECT Username, First_Name, Last_Name FROM users");
+      
+	  // Otherwise, users ("individuals") are returned in a resultset:
+	  ResultSet individuals = db.getResults("SELECT Username, First_Name, Last_Name FROM users");
       IndividualsList individualsList = new IndividualsList();
       try{
          while(individuals.next()){

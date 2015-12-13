@@ -1,6 +1,11 @@
-package projecthub; /**
- * Created by Chris on 11/15/2015.
+/**
+ * Created by Chris on 11/24/2015.
+ *
+ *
  */
+
+package projecthub; 
+
 import java.sql.*;
 public class Testing {
 

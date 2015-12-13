@@ -1,0 +1,3 @@
+Design and Requirements information may be found in the 4 iterations of "ProjectHub Project Plan" documents located in this folder. 
+
+Class, Architecture, and sequence diagrams may be found in the "Project Diagrams" document located in this folder. 

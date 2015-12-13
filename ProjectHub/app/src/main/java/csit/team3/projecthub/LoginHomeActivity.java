@@ -18,9 +18,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-<<<<<<< HEAD
+
 import java.io.Reader;
-=======
+
 // Note: the user's e-mail address is used as the user's ID
 // In this app. 
 
@@ -28,7 +28,7 @@ public class LoginHomeActivity extends AppCompatActivity {
     
 	// (See the notes below about the Controller class)
 	private Controller controller;
->>>>>>> origin/master
+
 
 public class LoginHomeActivity extends AppCompatActivity implements OnHTTPTaskCompleted {
     private Controller controller;
@@ -56,7 +56,7 @@ public class LoginHomeActivity extends AppCompatActivity implements OnHTTPTaskCo
         TextView lblStatus = (TextView)findViewById(R.id.lblStatus);
         lblStatus.setText(status);
     }
-<<<<<<< HEAD
+
     public void showProgressDialog(String text){
         this.progressDialog = ProgressDialog.show(this, "", text, true);
     }
@@ -69,7 +69,7 @@ public class LoginHomeActivity extends AppCompatActivity implements OnHTTPTaskCo
         LoginResult loginResult = (LoginResult)GsonWrapper.fromJson(result.getResponse(), LoginResult.class);
 
         if(loginResult == null)
-=======
+
 }
 
 // The controller is the class object which passes data
@@ -86,7 +86,7 @@ class Controller implements View.OnClickListener {
 		// The userID/password authentication is here:
 		LoginResult result = Authenticator.ClientLogin(txtEmail.getText().toString(), txtPassword.getText().toString());
         if(result == null)
->>>>>>> origin/master
+
             return;
         if(loginResult.wasSuccessful()){
             TextView lblStatus = (TextView)findViewById(R.id.lblStatus);
@@ -101,6 +101,9 @@ class Controller implements View.OnClickListener {
             NotificationDialog.show("Login Failed", "You have entered an incorrect e-mail or password.", this);
         }
     }
+	
+	// Controller is an intermediate component used to pass data to and from 
+	// The Android view (UI):
     class Controller implements View.OnClickListener {
         LoginHomeActivity screen;
         public Controller(LoginHomeActivity screen){

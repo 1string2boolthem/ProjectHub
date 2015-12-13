@@ -1,3 +1,11 @@
+/**
+ * Annotated by NF on 12/12/2015
+ *
+ * This View represents a screen in which a user can 
+ * add a project to the database of projects. 
+ *
+ */
+
 package csit.team3.projecthub;
 
 import android.app.AlertDialog;
@@ -26,7 +34,10 @@ import projecthub.Project.ProjectCreationAttempt;
 import projecthub.Project.ProjectCreationResult;
 
 public class AddProject extends AppCompatActivity implements OnHTTPTaskCompleted {
-    ArrayList<String> participants = new ArrayList<String>();
+    
+	// Data structures used to store project participants, resources,
+	// and other data:
+	ArrayList<String> participants = new ArrayList<String>();
     private static final String HOST = "freetheheap.net";
     ArrayList<String> participantUsernames = new ArrayList<String>();
     ArrayList<String> resources = new ArrayList<String>();
@@ -37,7 +48,9 @@ public class AddProject extends AppCompatActivity implements OnHTTPTaskCompleted
     ProgressDialog progressDialog;
     private String owner;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    
+	// View creation code:
+	protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_project);
         this.setTitle("Add Project");
@@ -93,7 +106,9 @@ public class AddProject extends AppCompatActivity implements OnHTTPTaskCompleted
         progressDialog.hide();
     }
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+    
+	// Project/participant/resource management code:
+	protected void onActivityResult(int requestCode, int resultCode, Intent data){
         if(resultCode == RESULT_OK){
             String caller = data.getExtras().getString("caller");
             if(caller.equals("owner")){
@@ -121,6 +136,9 @@ public class AddProject extends AppCompatActivity implements OnHTTPTaskCompleted
             }
         }
     }
+	
+	// Controller is an intermediate class which is responsible for processing and 
+	// sending data to/from the App(UI) and DB:
     class Controller implements View.OnClickListener, ListView.OnItemLongClickListener {
         AddProject screen;
         public Controller(AddProject screen){
@@ -141,7 +159,9 @@ public class AddProject extends AppCompatActivity implements OnHTTPTaskCompleted
             intent.putExtra("caller", "resource");
             startActivityForResult(intent, 1);
         }
-        public void doCreateProject(){
+        
+		// Project creation code:
+		public void doCreateProject(){
             EditText txtName = (EditText)findViewById(R.id.txtProjectName);
             EditText txtDescription = (EditText)findViewById(R.id.txtDescription);
             TextView txtOwner = (TextView)findViewById(R.id.txtOwner);
@@ -175,7 +195,9 @@ public class AddProject extends AppCompatActivity implements OnHTTPTaskCompleted
             else if(view == btnCreateProject)
                 doCreateProject();
         }
-        public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long row_id){
+        
+		// Long-press (long-click) removes items from list:
+		public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long row_id){
             ListView lstParticipants = (ListView)findViewById(R.id.lstParticipants);
             ListView lstResources = (ListView)findViewById(R.id.lstResources);
             if(parent == lstParticipants) {

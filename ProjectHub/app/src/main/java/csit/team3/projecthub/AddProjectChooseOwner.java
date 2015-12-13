@@ -1,3 +1,11 @@
+/**
+ * Annotated by NF on 12/12/2015
+ *
+ * This View represents the "project owner" selection process
+ * as a sub-task of creating a project:
+ *
+ */
+
 package csit.team3.projecthub;
 
 import android.app.AlertDialog;
@@ -23,7 +31,9 @@ import projecthub.HTTPRequest;
 import projecthub.IndividualsList;
 
 public class AddProjectChooseOwner extends AppCompatActivity implements OnHTTPTaskCompleted {
-    private Controller controller;
+    
+	// Setup data strucures and other variables:
+	private Controller controller;
     private static final String HOST = "freetheheap.net";
     private ArrayList<String> individuals = new ArrayList<String>();
     private ArrayList<String> keys = new ArrayList<String>();
@@ -39,7 +49,9 @@ public class AddProjectChooseOwner extends AppCompatActivity implements OnHTTPTa
         task.execute(request);
     }
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    
+	// View creation code:
+	protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_project_choose_owner);
         this.caller = getIntent().getExtras().getString("caller");
@@ -61,7 +73,9 @@ public class AddProjectChooseOwner extends AppCompatActivity implements OnHTTPTa
         this.listAdapter.notifyDataSetChanged();
         this.progressDialog.hide();
     }
-    private void returnIndividual(int keyPosition){
+    
+	// Selects project owner based on list index:
+	private void returnIndividual(int keyPosition){
         Intent returnData = new Intent();
         returnData.putExtra("caller", caller);
         returnData.putExtra("username", keys.get(keyPosition));
@@ -69,7 +83,10 @@ public class AddProjectChooseOwner extends AppCompatActivity implements OnHTTPTa
         setResult(RESULT_OK, returnData);
         finish();
     }
-    class Controller implements View.OnClickListener, ListView.OnItemClickListener {
+    
+	// Controller is an intermediate class which processes and passes data
+	// to/from the App(UI) and the DB:
+	class Controller implements View.OnClickListener, ListView.OnItemClickListener {
         AddProjectChooseOwner screen;
 
         public Controller(AddProjectChooseOwner screen) {
