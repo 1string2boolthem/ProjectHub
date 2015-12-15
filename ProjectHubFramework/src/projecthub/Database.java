@@ -55,11 +55,6 @@ public class Database {
          return null;
       }
    }
-<<<<<<< HEAD
-   public String testFunction(){
-      return "Something cool.";
-   }
-=======
    // If credentials are non-existent or connection is bogus, 
    // Database cannot be set. 
 >>>>>>> origin/master
