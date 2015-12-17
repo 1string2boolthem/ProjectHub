@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="commons-codec-1.10">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Downloads/apache-tomcat-7.0.52-windows-x64/apache-tomcat-7.0.52/lib/commons-codec-1.10.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/apache-tomcat-7.0.52-windows-x64/apache-tomcat-7.0.52/lib/commons-io-2.4.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/apache-tomcat-7.0.52-windows-x64/apache-tomcat-7.0.52/lib/mysql-connector-java-5.1.37-bin.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/apache-tomcat-7.0.52-windows-x64/apache-tomcat-7.0.52/lib/gson-2.4.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

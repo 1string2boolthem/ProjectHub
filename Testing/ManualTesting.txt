@@ -1,0 +1,31 @@
+LoginHomeActivity.class Testing
+-------------------------------------
+Test 1: Logging in with valid credentials
+Expected Result: A progress dialog should appear, indicating communication with the login server. The activity should then switch to the UserHome activity.
+
+Test 2: Logging in with invalid credentials
+Expected Result: A progress dialog should appear, indicating communication with the login server. A "Login Failed" dialog should sppear.
+
+CreateAccount.class Testing
+-------------------------------------
+Test 1: Attempting to register with a blank field. Each field should be tested.
+Expected Result: A progress dialog should appear, indicating communication with the login server. A "Register Field" dialog should appear indicating all of the fields were not completed.
+
+Test 2: Valid information in all fields with a Username not currently in the MySQL database
+Expected Result: A progress dialog should appear, indicating communication with the login server. The activity should then switch to the UserHome activity. An entry should be made for that user in the users table of the MySQL database.
+
+Test 3: Valid information in all fields with a Username currently in the MySQL database
+Expected Result: A progress dialog should appear, indicating communication with the login server. A "Register Failed" dialog should appear, indicating that the Username is not unique.
+
+Test 4: Valid information in all fields. Unmatching password and confirm password fields.
+Expected Result: A progress dialog should appear, indicating communication with the login server. A "Register Failed" dialog should appear indicating that the Password and Confirm Password fields do not match.
+
+AddProject.class Testing
+-------------------------------------
+Test 1: Attempt to register with a blank project name, project description, and/or owner. Attempt each combination.
+Expected Result: A progress dialog should appear indicating communication with the server. The user should then be notified that one or more fields are empty.
+
+Test 2: Attempt to register a project with the project owner also added as a participant.
+Expected Result: The user should only show up once in the users->projects table in the MySQL database.
+
+
